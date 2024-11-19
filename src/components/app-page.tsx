@@ -1,34 +1,43 @@
-"use client"
+"use client";
 
-import { motion, AnimatePresence } from "framer-motion"
-import { Calendar, Globe, MapPin, Plane, Search, Users } from 'lucide-react'
-import Image from "next/image"
-import Link from "next/link"
-import * as React from "react"
+import { motion, AnimatePresence } from "framer-motion";
+import { Calendar, Globe, Users } from "lucide-react";
+import Image from "next/image";
+import * as React from "react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Footer from "@/components/footer"
-import Navbar from "@/components/navbar"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-}
+  transition: { duration: 0.5 },
+};
 
-const backgroundImageUrl = "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2070&q=80"
+const backgroundImageUrl =
+  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2070&q=80";
 
 export function BlockPage() {
-  const [activeTab, setActiveTab] = React.useState("flights")
+  const [activeTab, setActiveTab] = React.useState("flights");
 
   return (
     <div className="flex min-h-screen flex-col bg-[#F5F5F5]">
       <Navbar />
       <main className="flex-1">
-        <section className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
+        <section
+          className="relative min-h-screen bg-cover bg-center"
+          style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+        >
           <div className="absolute inset-0 bg-black/50" />
           <div className="container relative z-10 flex min-h-screen flex-col items-center justify-center py-20 text-center text-white">
             <motion.div
@@ -50,12 +59,24 @@ export function BlockPage() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="w-full max-w-4xl"
             >
-              <Tabs value={activeTab} onValueChange={setActiveTab} className="mx-auto">
+              <Tabs
+                value={activeTab}
+                onValueChange={setActiveTab}
+                className="mx-auto"
+              >
                 <TabsList className="grid w-full grid-cols-4 bg-white/20 backdrop-blur-sm">
-                  <TabsTrigger value="flights" className="text-white">Flights</TabsTrigger>
-                  <TabsTrigger value="hotels" className="text-white">Hotels</TabsTrigger>
-                  <TabsTrigger value="packages" className="text-white">Packages</TabsTrigger>
-                  <TabsTrigger value="visa" className="text-white">Visa</TabsTrigger>
+                  <TabsTrigger value="flights" className="text-white">
+                    Flights
+                  </TabsTrigger>
+                  <TabsTrigger value="hotels" className="text-white">
+                    Hotels
+                  </TabsTrigger>
+                  <TabsTrigger value="packages" className="text-white">
+                    Packages
+                  </TabsTrigger>
+                  <TabsTrigger value="visa" className="text-white">
+                    Visa
+                  </TabsTrigger>
                 </TabsList>
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -69,10 +90,21 @@ export function BlockPage() {
                       <Card className="border-none bg-white/10 backdrop-blur-md">
                         <CardContent className="p-4">
                           <form className="grid gap-4 md:grid-cols-5">
-                            <Input className="rounded-full" placeholder="From" />
+                            <Input
+                              className="rounded-full"
+                              placeholder="From"
+                            />
                             <Input className="rounded-full" placeholder="To" />
-                            <Input className="rounded-full" type="date" placeholder="Departure" />
-                            <Input className="rounded-full" type="date" placeholder="Return" />
+                            <Input
+                              className="rounded-full"
+                              type="date"
+                              placeholder="Departure"
+                            />
+                            <Input
+                              className="rounded-full"
+                              type="date"
+                              placeholder="Return"
+                            />
                             <Button className="rounded-full bg-[#FF4B38] hover:bg-[#FF4B38]/90">
                               Search Flights
                             </Button>
@@ -84,9 +116,20 @@ export function BlockPage() {
                       <Card className="border-none bg-white/10 backdrop-blur-md">
                         <CardContent className="p-4">
                           <form className="grid gap-4 md:grid-cols-4">
-                            <Input className="rounded-full" placeholder="Destination" />
-                            <Input className="rounded-full" type="date" placeholder="Check-in" />
-                            <Input className="rounded-full" type="date" placeholder="Check-out" />
+                            <Input
+                              className="rounded-full"
+                              placeholder="Destination"
+                            />
+                            <Input
+                              className="rounded-full"
+                              type="date"
+                              placeholder="Check-in"
+                            />
+                            <Input
+                              className="rounded-full"
+                              type="date"
+                              placeholder="Check-out"
+                            />
                             <Button className="rounded-full bg-[#FF4B38] hover:bg-[#FF4B38]/90">
                               Search Hotels
                             </Button>
@@ -98,9 +141,19 @@ export function BlockPage() {
                       <Card className="border-none bg-white/10 backdrop-blur-md">
                         <CardContent className="p-4">
                           <form className="grid gap-4 md:grid-cols-4">
-                            <Input className="rounded-full" placeholder="Destination" />
-                            <Input className="rounded-full" type="date" placeholder="Start Date" />
-                            <Input className="rounded-full" placeholder="Duration (days)" />
+                            <Input
+                              className="rounded-full"
+                              placeholder="Destination"
+                            />
+                            <Input
+                              className="rounded-full"
+                              type="date"
+                              placeholder="Start Date"
+                            />
+                            <Input
+                              className="rounded-full"
+                              placeholder="Duration (days)"
+                            />
                             <Button className="rounded-full bg-[#FF4B38] hover:bg-[#FF4B38]/90">
                               Search Packages
                             </Button>
@@ -112,9 +165,19 @@ export function BlockPage() {
                       <Card className="border-none bg-white/10 backdrop-blur-md">
                         <CardContent className="p-4">
                           <form className="grid gap-4 md:grid-cols-4">
-                            <Input className="rounded-full" placeholder="Nationality" />
-                            <Input className="rounded-full" placeholder="Destination Country" />
-                            <Input className="rounded-full" type="date" placeholder="Travel Date" />
+                            <Input
+                              className="rounded-full"
+                              placeholder="Nationality"
+                            />
+                            <Input
+                              className="rounded-full"
+                              placeholder="Destination Country"
+                            />
+                            <Input
+                              className="rounded-full"
+                              type="date"
+                              placeholder="Travel Date"
+                            />
                             <Button className="rounded-full bg-[#FF4B38] hover:bg-[#FF4B38]/90">
                               Check Visa Requirements
                             </Button>
@@ -130,12 +193,32 @@ export function BlockPage() {
         </section>
         <section className="py-20">
           <div className="container">
-            <h2 className="mb-12 text-center text-3xl font-bold text-[#8B2A7D]">Popular Packages</h2>
+            <h2 className="mb-12 text-center text-3xl font-bold text-[#8B2A7D]">
+              Popular Packages
+            </h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[
-                { title: "Dubai Adventure", price: "AED 2,999", duration: "5 Days", image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80" },
-                { title: "Turkey Explorer", price: "USD 1,499", duration: "7 Days", image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80" },
-                { title: "Umrah Package", price: "SAR 4,999", duration: "10 Days", image: "https://images.unsplash.com/photo-1591604129939-f7c5f6145e31?auto=format&fit=crop&w=800&q=80" },
+                {
+                  title: "Dubai Adventure",
+                  price: "AED 2,999",
+                  duration: "5 Days",
+                  image:
+                    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  title: "Turkey Explorer",
+                  price: "USD 1,499",
+                  duration: "7 Days",
+                  image:
+                    "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  title: "Umrah Package",
+                  price: "SAR 4,999",
+                  duration: "10 Days",
+                  image:
+                    "https://images.unsplash.com/photo-1591604129939-f7c5f6145e31?auto=format&fit=crop&w=800&q=80",
+                },
               ].map((pkg, i) => (
                 <motion.div key={i} {...fadeIn} transition={{ delay: i * 0.1 }}>
                   <Card className="group overflow-hidden rounded-xl border-none shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -150,8 +233,12 @@ export function BlockPage() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4">
-                          <CardTitle className="mb-2 text-2xl font-bold text-white">{pkg.title}</CardTitle>
-                          <p className="text-lg font-semibold text-white/90">{pkg.duration}</p>
+                          <CardTitle className="mb-2 text-2xl font-bold text-white">
+                            {pkg.title}
+                          </CardTitle>
+                          <p className="text-lg font-semibold text-white/90">
+                            {pkg.duration}
+                          </p>
                         </div>
                       </div>
                     </CardHeader>
@@ -170,10 +257,14 @@ export function BlockPage() {
                           All-Inclusive Package
                         </div>
                       </div>
-                      <p className="mt-4 text-2xl font-bold text-[#FF4B38]">{pkg.price}</p>
+                      <p className="mt-4 text-2xl font-bold text-[#FF4B38]">
+                        {pkg.price}
+                      </p>
                     </CardContent>
                     <CardFooter className="p-6 pt-0">
-                      <Button className="w-full rounded-full bg-[#8B2A7D] hover:bg-[#8B2A7D]/90">Book Now</Button>
+                      <Button className="w-full rounded-full bg-[#8B2A7D] hover:bg-[#8B2A7D]/90">
+                        Book Now
+                      </Button>
                     </CardFooter>
                   </Card>
                 </motion.div>
@@ -188,12 +279,35 @@ export function BlockPage() {
         </section>
         <section className="bg-[#F0F4F8] py-20">
           <div className="container">
-            <h2 className="mb-12 text-center text-3xl font-bold text-[#8B2A7D]">Traveler Experiences</h2>
+            <h2 className="mb-12 text-center text-3xl font-bold text-[#8B2A7D]">
+              Traveler Experiences
+            </h2>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[
-                { name: "Sarah L.", quote: "Rameez Travels made our honeymoon absolutely perfect. Every detail was taken care of!", avatar: "https://i.pravatar.cc/100?img=1", image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" },
-                { name: "John D.", quote: "I've never had such a seamless travel experience. Highly recommended!", avatar: "https://i.pravatar.cc/100?img=2", image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80" },
-                { name: "Emily R.", quote: "The destinations were breathtaking and the local guides were exceptional.", avatar: "https://i.pravatar.cc/100?img=3", image: "https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=800&q=80" },
+                {
+                  name: "Sarah L.",
+                  quote:
+                    "Rameez Travels made our honeymoon absolutely perfect. Every detail was taken care of!",
+                  avatar: "https://i.pravatar.cc/100?img=1",
+                  image:
+                    "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  name: "John D.",
+                  quote:
+                    "I've never had such a seamless travel experience. Highly recommended!",
+                  avatar: "https://i.pravatar.cc/100?img=2",
+                  image:
+                    "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80",
+                },
+                {
+                  name: "Emily R.",
+                  quote:
+                    "The destinations were breathtaking and the local guides were exceptional.",
+                  avatar: "https://i.pravatar.cc/100?img=3",
+                  image:
+                    "https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=800&q=80",
+                },
               ].map((testimonial, i) => (
                 <motion.div key={i} {...fadeIn} transition={{ delay: i * 0.1 }}>
                   <Card className="overflow-hidden rounded-xl border-none shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
@@ -217,8 +331,12 @@ export function BlockPage() {
                         />
                       </div>
                       <div className="pt-8">
-                        <p className="mb-4 text-gray-600">"{testimonial.quote}"</p>
-                        <p className="font-semibold text-[#8B2A7D]">{testimonial.name}</p>
+                        <p className="mb-4 text-gray-600">
+                          &quot;{testimonial.quote}&quot;
+                        </p>
+                        <p className="font-semibold text-[#8B2A7D]">
+                          {testimonial.name}
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -230,5 +348,5 @@ export function BlockPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }

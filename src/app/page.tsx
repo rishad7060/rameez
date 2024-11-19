@@ -1,9 +1,8 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, Globe, MapPin, Plane, Search, Users } from "lucide-react";
+import { motion } from "framer-motion";
+import { Calendar, Globe, Users } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -15,26 +14,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
-};
 
 const backgroundImageUrl =
   "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2070&q=80";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = React.useState("flights");
   const popularPackagesRef = React.useRef<HTMLDivElement>(null);
-
-  const scrollToPopularPackages = () => {
-    if (popularPackagesRef.current) {
-      popularPackagesRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="flex min-h-screen flex-col bg-[#F5F5F5]">
@@ -237,7 +222,7 @@ export default function Home() {
                       </div>
                       <div className="pt-8">
                         <p className="mb-4 text-gray-600">
-                          "{testimonial.quote}"
+                          &quot;{testimonial.quote}&quot;
                         </p>
                         <p className="font-semibold text-[#8B2A7D]">
                           {testimonial.name}
