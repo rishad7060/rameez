@@ -1,26 +1,44 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Globe, Users } from "lucide-react";
 import Image from "next/image";
 import * as React from "react";
+import { Plane, MapPin, Send, Star, CheckCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { AboutSection } from "@/components/AboutSection";
+import { PopularPackages } from "@/components/PopularPackages";
+import WhyChooseUs from "@/components/WhyChooseUs";
 
 const backgroundImageUrl =
-  "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=2070&q=80";
+  "https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/95702843_2577958582479174_7067347189256683520_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeF_kxkhsrT6n83VJtFqLECkvrm4hCJWYjy-ubiEIlZiPDL-_MnF_gZh6u0YoFlQX0w7EDISKcXhfqLJnk0kdpvu&_nc_ohc=WilnOW3S20kQ7kNvgGoFL-C&_nc_zt=23&_nc_ht=scontent.fcmb1-2.fna&_nc_gid=Ah1ag9AvQD-h6TODtAEg0fL&oh=00_AYAElPVNFTPDQk8C_9jDR79xGYgUNk8dZIaUDUPwoGWhrA&oe=67667EEF";
+
+// Variants for smooth animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
 
 export default function Home() {
-  const popularPackagesRef = React.useRef<HTMLDivElement>(null);
-
   return (
     <div className="flex min-h-screen flex-col bg-[#F5F5F5]">
       <main className="flex-1">
@@ -28,146 +46,64 @@ export default function Home() {
           className="relative min-h-screen bg-cover bg-center"
           style={{ backgroundImage: `url(${backgroundImageUrl})` }}
         >
-          <div className="absolute inset-0 bg-black/50 " />
-          <div className="relative z-10 flex min-h-screen flex-col items-center justify-center py-20 text-center text-white">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="relative flex min-h-screen flex-col items-center justify-center py-16 px-4 text-center text-white"
+          >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-8 max-w-4xl"
+              variants={itemVariants}
+              className="mb-8 flex max-w-3xl flex-col items-center"
             >
-              <h1 className="mb-4 text-5xl font-bold tracking-tighter sm:text-6xl md:text-7xl">
-                Discover the World with Rameez
+              <Plane
+                size={48}
+                className="mb-4 text-[#FF4B38] animate-pulse"
+                strokeWidth={1.5}
+              />
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter bg-gradient-to-r from-[#FF4B38] to-[#8B2A7D] bg-clip-text text-transparent">
+                Travel Beyond Sri Lanka
               </h1>
-              <p className="text-xl text-white/90 md:text-2xl">
-                Your journey to unforgettable experiences starts here
+              <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-xl">
+                Discover hassle-free packages to Dubai, Bali, Bangkok and
+                beyond—where every journey is a story waiting to unfold.
               </p>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="w-full max-w-4xl"
+              variants={itemVariants}
+              className="flex flex-wrap items-center justify-center space-x-4"
             >
-              <Button className="rounded-full bg-[#FF4B38] px-8 py-3 text-lg font-semibold hover:bg-[#FF4B38]/90 transition-colors duration-300">
-                Start Your Journey
+              <Button className="group rounded-full bg-gradient-to-r from-[#8B2A7D] to-[#FF4B38] px-6 py-2 sm:px-8 sm:py-3 text-lg font-semibold hover:from-[#FF4B38] hover:to-[#8B2A7D] transition-all duration-300 flex items-center space-x-2">
+                <Send className="group-hover:animate-send" size={20} />
+                <span>Start Your Journey</span>
               </Button>
             </motion.div>
-          </div>
+          </motion.div>
         </section>
-        <section className="py-20" ref={popularPackagesRef}>
-          <div className="container mx-auto px-4">
-            <motion.h2
+
+        <AboutSection />
+        <PopularPackages />
+
+        {/* Traveler Experiences */}
+        <section className="bg-[#F0F4F8] py-16 px-4">
+          <div className="container mx-auto">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-12 text-center text-3xl font-bold text-[#8B2A7D]"
+              className="text-center mb-12"
             >
-              Popular Packages
-            </motion.h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  title: "Dubai Adventure",
-                  price: "LKR 80,000",
-                  duration: "5 Days",
-                  image:
-                    "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
-                },
-                {
-                  title: "Turkey Explorer",
-                  price: "LKR 240,000",
-                  duration: "7 Days",
-                  image:
-                    "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=80",
-                },
-                {
-                  title: "Umrah Package",
-                  price: "LKR 280,000",
-                  duration: "10 Days",
-                  image:
-                    "https://images.unsplash.com/photo-1693729615649-f947b031817e?auto=format&fit=crop&w=800&q=80",
-                },
-              ].map((pkg, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <Card className="group overflow-hidden rounded-xl border-none shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                    <CardHeader className="p-0">
-                      <div className="relative overflow-hidden">
-                        <Image
-                          src={pkg.image}
-                          alt={pkg.title}
-                          className="aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-110"
-                          height="300"
-                          width="400"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <CardTitle className="mb-2 text-2xl font-bold text-white">
-                            {pkg.title}
-                          </CardTitle>
-                          <p className="text-lg font-semibold text-white/90">
-                            {pkg.duration}
-                          </p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                      <div className="space-y-2 text-sm text-gray-600">
-                        <div className="flex items-center">
-                          <Calendar className="mr-2 h-4 w-4 text-[#FF4B38]" />
-                          Flexible Dates
-                        </div>
-                        <div className="flex items-center">
-                          <Users className="mr-2 h-4 w-4 text-[#FF4B38]" />
-                          Group & Family Tours
-                        </div>
-                        <div className="flex items-center">
-                          <Globe className="mr-2 h-4 w-4 text-[#FF4B38]" />
-                          All-Inclusive Package
-                        </div>
-                      </div>
-                      <p className="mt-4 text-2xl font-bold text-[#FF4B38]">
-                        {pkg.price}
-                      </p>
-                    </CardContent>
-                    <CardFooter className="p-6 pt-0">
-                      <Button className="w-full rounded-full bg-[#8B2A7D] hover:bg-[#8B2A7D]/90 transition-colors duration-300">
-                        Book Now
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-            <div className="mt-12 text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Button className="rounded-full bg-[#FF4B38] px-8 py-3 text-lg font-semibold hover:bg-[#FF4B38]/90 transition-colors duration-300">
-                  View All Packages
-                </Button>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-        <section className="bg-[#F0F4F8] py-20">
-          <div className="container mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-12 text-center text-3xl font-bold text-[#8B2A7D]"
-            >
-              Traveler Experiences
-            </motion.h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#8B2A7D] mb-4 flex items-center justify-center">
+                <Star className="mr-2 text-[#FF4B38]" size={28} />
+                Traveler Experiences
+              </h2>
+              <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+                Real stories from adventurers who turned their dream trips into
+                unforgettable memories.
+              </p>
+            </motion.div>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   name: "Sarah L.",
@@ -196,22 +132,27 @@ export default function Home() {
               ].map((testimonial, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
-                  <Card className="overflow-hidden rounded-xl border-none shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                    <CardHeader className="p-0">
+                  <Card className="overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <CardHeader className="p-0 relative">
                       <Image
                         src={testimonial.image}
                         alt={`${testimonial.name}'s travel experience`}
-                        className="aspect-video object-cover"
-                        height="200"
-                        width="400"
+                        className="aspect-video object-cover filter brightness-75"
+                        height={200}
+                        width={400}
                       />
+                      <div className="absolute top-4 right-4 bg-[#FF4B38]/80 text-white px-3 py-1 rounded-full flex items-center">
+                        <CheckCircle size={16} className="mr-2" />
+                        Verified Trip
+                      </div>
                     </CardHeader>
                     <CardContent className="relative p-6">
-                      <div className="absolute -top-8 left-6 h-16 w-16 overflow-hidden rounded-full border-4 border-white bg-white">
+                      <div className="absolute -top-8 left-6 h-16 w-16 overflow-hidden rounded-full border-4 border-white shadow-lg">
                         <Image
                           src={testimonial.avatar}
                           alt={testimonial.name}
@@ -221,10 +162,11 @@ export default function Home() {
                         />
                       </div>
                       <div className="pt-8">
-                        <p className="mb-4 text-gray-600">
-                          &quot;{testimonial.quote}&quot;
+                        <p className="mb-4 text-gray-600 italic">
+                          {testimonial.quote}
                         </p>
-                        <p className="font-semibold text-[#8B2A7D]">
+                        <p className="font-semibold text-[#8B2A7D] flex items-center">
+                          <MapPin size={16} className="mr-2 text-[#FF4B38]" />
                           {testimonial.name}
                         </p>
                       </div>
@@ -235,36 +177,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="rounded-xl bg-gradient-to-r from-[#8B2A7D] to-[#FF4B38] p-8 md:p-12 lg:p-16"
-            >
-              <div className="mx-auto max-w-3xl space-y-4 text-center text-white">
-                <h2 className="text-3xl font-bold">
-                  Get Exclusive Travel Offers
-                </h2>
-                <p className="mt-2 text-white/90">
-                  Subscribe to our newsletter and be the first to know about our
-                  best deals!
-                </p>
-                <form className="mt-6 flex flex-col items-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-                  <Input
-                    className="w-full rounded-full border-2 border-white bg-white/10 px-4 py-2 text-white placeholder-white/70 backdrop-blur-sm focus:border-white focus:outline-none focus:ring-2 focus:ring-white/50"
-                    placeholder="Enter your email"
-                    type="email"
-                  />
-                  <Button className="w-full rounded-full bg-white px-8 py-2 font-semibold text-[#8B2A7D] hover:bg-white/90 transition-colors duration-300 sm:w-auto">
-                    Subscribe
-                  </Button>
-                </form>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+
+        <WhyChooseUs />
       </main>
     </div>
   );
